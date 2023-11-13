@@ -1,0 +1,165 @@
+*{
+    margin: 0;
+    padding: 0;
+   // border: 1px solid rgb(255, 102, 102);
+    color:darkslategrey;
+}
+
+body{
+    background-color:black;
+}
+
+h1{
+    text-align: center;
+    color: orange;
+    bottom: 0;
+    left: 50%;
+    font-size: 50px;
+    position:absolute;
+}
+
+#graph_board{
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    top: 0;
+    background-color: red;
+    z-index: 10;
+    transition: 1.5s;
+}
+
+#counter{
+    position: absolute;
+    top: 0;
+    right: 2px;
+    height: 5px;
+    width: 50px;
+    border-radius: 0 0 10px 10px;
+    background-color: black;
+    transition: 0.5s;
+}
+#counter-text{
+    position:absolute;
+    bottom: 4px;
+    width: 50px;
+    text-align: center;
+    font-size: 0px;
+    font-weight: Bold;
+    color: red;
+    transition-delay: 0.05s;
+}
+
+#clicks{
+    color: red;
+    font-size: 0px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 0px;
+    transition-delay: 0.2s;
+    transition-duration: 0.3s;
+}
+
+#board{
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    height:650px;
+    width: 600px;
+    margin: 80px auto;
+}
+
+#play_area{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-content: center;
+    width: 480px;
+    height: 480px;
+    margin: auto;
+    padding-top: 50px;
+
+}
+
+#cover_left{
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    background-color:darkolivegreen;
+    width: 300px;
+    height: 600px;
+    transition: 1s;
+}
+
+#cover_right{
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    background-color:darkolivegreen;
+    width: 300px;
+    height: 600px;
+    transition: 1s;
+}
+
+.square1{
+    height: 80px;
+    width: 80px;
+    background-size:cover;
+    background-image: url(..//Pictures/blue_square_1.png);
+    transition: 0.5s;
+}
+
+.square2{
+    height: 80px;
+    width: 80px;
+    background-size:cover;
+    background-image: url(..//Pictures/blue_square_4.png);
+    transition: 0.5s;
+}
+
+.square1:hover{
+    background-image: url(..//Pictures/blue_square_2.png);
+}
+
+.square2:hover{
+    background-image: url(..//Pictures/blue_square_5.png);
+}
+
+#menu{
+    margin: 30px auto;
+    text-align:center;
+}
+
+.button{
+    display:inline;
+    font-size: 30px;
+    text-transform:uppercase;
+    letter-spacing: 0.1em;
+    color: darkred;
+    font-weight: bold;
+    text-align: center;
+    background-color:darkorange;
+    border: 2px solid grey;
+    margin: 30px 20px;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+.button:hover{
+    color: darkred;
+    text-shadow: 2px 2px 6px black;
+    border: 2px solid darkred;
+}
+
+.button:active{
+    color: black;
+    background-color:olive;
+    border: 2px solid lightgreen;
+    transition: 0s;
+}
+
+#startButton{
+    position:absolute;
+    width: 210px;
+    top: 230px;
+    z-index: 10;
+    font-size: 50px;
+}
