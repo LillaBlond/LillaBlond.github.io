@@ -76,9 +76,12 @@ const counterTab = document.getElementById("counter");
 const counterText = document.getElementById("counter-text");
 const clickCount = document.getElementById("clicks");
 const graphBoard = document.getElementById("graph_board");
+const menu = document.getElementById("menu");
 
-const blueSquareImage = "..//Pictures/blue_square_1.png";
-const brownSquareImage = "..//Pictures/brown_square_6.png";
+const blueSquareImage = "url('./Resources/Pictures/blue_square_1.png')";
+const brownSquareImage = "url('./Resources/Pictures/blue_square_4.png')";
+const blueHighlight = "url('./Resources/Pictures/blue_square_2.png')";
+const brownHighlight = "url('./Resources/Pictures/blue_square_5.png')";
 
 const gameBoardArray  = [square1_1, square1_2, square1_3, square1_4, square1_5, square1_6,
     square2_1, square2_2, square2_3, square2_4, square2_5, square2_6, 
@@ -88,6 +91,7 @@ const gameBoardArray  = [square1_1, square1_2, square1_3, square1_4, square1_5, 
     square6_1, square6_2, square6_3, square6_4, square6_5, square6_6];
 
 //Board setup arrays
+const testSetup = ["1:1", "1:2", "2:1"];
 const setup1 = ["1:3", "2:3", "2:4", "2:5", "3:1", "3:2", "3:3", "3:5", "3:6", "4:2", "4:5", "5:1", "5:2", "5:3", "5:6", "6:3", "6:6"]
 const setup2 = ["1:1","1:2","1:4","1:5","2:2","3:1","3:2","3:4","3:5","3:6","4:2","4:3","4:5","5:1","5:2","5:5","6:3","6:5"];
 const setup3 = ["1:4","1:6","2:2","3:1","3:4","3:5","4:2","4:5","5:4","5:5","6:2","6:4","6:5"];
@@ -130,13 +134,36 @@ End scene - all tiles are the same color
 //Functions
 // Function that flip the tile to opposite color
 function flipTile(tile){
-    if (tile.className === "square1") {
+    if (tile.className === "square1" || tile.className === "square3") {
         tile.className = "square2";
     }
     else {
         tile.className = "square1";
     }
 }
+
+function highlight(tile){
+    if(active){
+        if(tile.className === "square1"){
+            tile.className = "square3";
+        }
+        if(tile.className === "square2"){
+            tile.className = "square4";
+        }
+    }
+}
+
+function deHighlight(tile){
+    if(active){
+        if(tile.className === "square3"){
+            tile.className = "square1";
+        }
+       if((tile.className === "square4")){
+            tile.className = "square2";
+        }
+    }
+}
+
 function increaseCounter() {
     counter++;
     clickCount.innerHTML = counter
@@ -156,14 +183,50 @@ function prepareBoard(){
 
 function startGame(){
     counter = 0;
+    active = true;
     clickCount.innerHTML = counter
+    counterTab.style.height ="50px";
+    counterText.style.fontSize ="15px";
+    setTimeout(function(){
+        clickCount.style.fontSize = "20px";
+        clickCount.style.paddingTop = "5px";
+    }, 200);
+    if(playArea.childElementCount === 5){
+        gameBoardArray.forEach(element =>{
+            playArea.appendChild(element)})
+            document.getElementById("win_screen").remove();
+            menu.appendChild(resetButton);
+    }
 
 }
 
 function endGame(){
     active = false;
+    clickCount.style.fontSize = "0px";
+    clickCount.style.paddingTop = "0px";
+    counterTab.style.height ="0px";
+    counterText.style.fontSize ="0px";
+    gameBoardArray.forEach(element =>{
+        element.remove()
+    });
+    resetButton.remove();
+    showEndScreen();
+   
 
+};
+
+
+   
+function showEndScreen(){
+    const winScreen= document.createElement("div"); 
+    winScreen.id = "win_screen";
+    winScreen.innerHTML = `<h2>Congratulations!</h2>
+            <p>You finished with <br>
+            <span>${counter}</span> <br> Clicks</p>`;
+    playArea.appendChild(winScreen);
+    
 }
+
 
 function CheckStatus(){
     if(square1Class.length === 36){
@@ -255,6 +318,13 @@ function BoardSetup(boardSetupValue){
         case 9:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup10.includes(gameBoardArray[i].id)){
+                    flipTile(gameBoardArray[i]);
+                }
+            }
+        break;
+        case 10: // Setup for testing win screen only
+            for(let i = 0; i < gameBoardArray.length ; i++){
+                if(testSetup.includes(gameBoardArray[i].id)){
                     flipTile(gameBoardArray[i]);
                 }
             }
@@ -662,8 +732,23 @@ resetButton.onclick = function (){
 }
 
 NewGameButton.onclick = function (){
-    if(active){
         startGame();
         BoardSetup(setupRandomizer());
-    }
 }
+
+//hover effects
+
+
+
+gameBoardArray.forEach(element => {
+    element.addEventListener("mouseover", () => {
+        highlight(element)});
+    }
+)
+
+gameBoardArray.forEach(element => {
+    element.addEventListener("mouseout", () => {
+        deHighlight(element)});
+    }
+)
+
