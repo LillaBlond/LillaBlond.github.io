@@ -65,6 +65,7 @@ const square8_7 = document.getElementById("8:7");
 const square8_8 = document.getElementById("8:8");
 
 const startButton = document.getElementById("startButton");
+const instructions = document.getElementById("instructions");
 const NewGameButton = document.getElementById("newGameButton");
 const resetButton = document.getElementById("resetButton");
 const playArea = document.getElementById("play_area");
@@ -77,6 +78,7 @@ const counterText = document.getElementById("counter-text");
 const clickCount = document.getElementById("clicks");
 const graphBoard = document.getElementById("graph_board");
 const menu = document.getElementById("menu");
+const recordValue = document.getElementById("recordValue");
 
 const blueSquareImage = "url('./Resources/Pictures/blue_square_1.png')";
 const brownSquareImage = "url('./Resources/Pictures/blue_square_4.png')";
@@ -92,6 +94,7 @@ const gameBoardArray  = [square1_1, square1_2, square1_3, square1_4, square1_5, 
 
 //Board setup arrays
 const testSetup = ["1:1", "1:2", "2:1"];
+const testSetup2 = ["1:3","1:4","1:5","1:6","2:2","2:3","2:4","2:5","2:6","3:1","3:2","3:3","3:4","3:5","3:6","4:1","4:2","4:3","4:4","4:5","4:6","5:1","5:2","5:3","5:4","5:5","5:6","6:1","6:2","6:3","6:4","6:5","6:6"];
 const setup1 = ["1:3", "2:3", "2:4", "2:5", "3:1", "3:2", "3:3", "3:5", "3:6", "4:2", "4:5", "5:1", "5:2", "5:3", "5:6", "6:3", "6:6"]
 const setup2 = ["1:1","1:2","1:4","1:5","2:2","3:1","3:2","3:4","3:5","3:6","4:2","4:3","4:5","5:1","5:2","5:5","6:3","6:5"];
 const setup3 = ["1:4","1:6","2:2","3:1","3:4","3:5","4:2","4:5","5:4","5:5","6:2","6:4","6:5"];
@@ -107,6 +110,8 @@ const setup10 = ["1:1","1:2","1:6","2:1","2:4","2:5","3:1","3:2","4:3","4:4","4:
 let counter;
 let active = false;
 let lastBoardSetup;
+let records = [0,0,0,0,0,0,0,0,0,0,0];
+
 /*
 A function that start the game when visitor click play
     1. The Play button dissapears
@@ -170,13 +175,22 @@ function increaseCounter() {
     
 }
 
+function saveRecord(){
+        records[lastBoardSetup] = counter;
+}
+
 function prepareBoard(){
 
     coverLeft.style.width = "0px";
     coverRight.style.width = "0px";
+    setTimeout(function(){
+        coverLeft.remove();
+        coverRight.remove();
+    }, 1100);
     counterTab.style.height ="50px";
     counterText.style.fontSize ="15px";
     startButton.remove();
+    instructions.remove();
     clickCount.style.fontSize = "20px";
     clickCount.style.paddingTop = "5px";
 }
@@ -191,16 +205,18 @@ function startGame(){
         clickCount.style.fontSize = "20px";
         clickCount.style.paddingTop = "5px";
     }, 200);
-    if(playArea.childElementCount === 5){
+    if(playArea.childElementCount === 1){
         gameBoardArray.forEach(element =>{
             playArea.appendChild(element)})
             document.getElementById("win_screen").remove();
             menu.appendChild(resetButton);
     }
+    recordValue.innerHTML = records[lastBoardSetup];
 
 }
 
 function endGame(){
+    record = counter;
     active = false;
     clickCount.style.fontSize = "0px";
     clickCount.style.paddingTop = "0px";
@@ -211,12 +227,12 @@ function endGame(){
     });
     resetButton.remove();
     showEndScreen();
-   
-
+    saveRecord();
+    if((records[lastBoardSetup] > record && records[lastBoardSetup] !== 0) || recordValue.innerHTML === "No record yet"){
+    recordValue.innerHTML = `${records[lastBoardSetup]}`;
+    }
 };
 
-
-   
 function showEndScreen(){
     const winScreen= document.createElement("div"); 
     winScreen.id = "win_screen";
@@ -227,9 +243,8 @@ function showEndScreen(){
     
 }
 
-
 function CheckStatus(){
-    if(square1Class.length === 36){
+    if(square1Class.length === 36 || square2Class.length === 36){
         endGame();
     }
 
@@ -322,9 +337,17 @@ function BoardSetup(boardSetupValue){
                 }
             }
         break;
-        case 10: // Setup for testing win screen only
+        case 10: // Setup for testing win with blue squares screen only
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(testSetup.includes(gameBoardArray[i].id)){
+                    flipTile(gameBoardArray[i]);
+                }
+            }
+            return lastBoardSetup = 10;
+        break;
+        case 11: // Setup for testing win screen with yellow squares only
+            for(let i = 0; i < gameBoardArray.length ; i++){
+                if(testSetup2.includes(gameBoardArray[i].id)){
                     flipTile(gameBoardArray[i]);
                 }
             }
