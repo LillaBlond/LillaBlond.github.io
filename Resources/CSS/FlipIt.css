@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    color: goldenrod;
+    color:darkslategrey;
 }
 
 body{
@@ -16,7 +16,8 @@ h1{
     color: orange;
     height: 80px;
     width: 200px;
-    font-size: 60px;
+    margin: 120px auto;
+    font-size: 50px;
 }
 
 h2{
@@ -39,7 +40,8 @@ p{
     background-repeat: no-repeat;
     background-position: center;
     top: 0;
-    z-index: 20;
+  
+    z-index: 10;
     transition: 1.5s;
 }
 
@@ -55,7 +57,7 @@ p{
     padding-top: 10px;
     background-color: black;
     color: red;
-    font-size: 20px;
+    font-size: 20;
     height: 30px;
 }
 
@@ -64,34 +66,36 @@ p{
 }
 
 #counter{
-    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 2px;
+    height: 5px;
     width: 50px;
     border-radius: 0 0 10px 10px;
     background-color: black;
-    color: red;
     transition: 0.5s;
 }
 #counter-text{
     width: 50px;
     text-align: center;
-    font-size: 15px;
+    font-size: 0px;
     font-weight: Bold;
     color: red;
-    transition: 0.5s;
+    transition-delay: 0.05s;
 }
 
 #clicks{
     color: red;
-    font-size: 20px;
+    font-size: 0px;
     font-weight: bold;
     text-align: center;
-    padding-top: 5px;
-    transition: 0.5s;
+    padding-top: 0px;
+    transition-duration: 0.3s;
 }
 
 #board{
     position: relative;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(255, 255, 255);
     height:620px;
     width: 600px;
     margin: 20px auto 0px;
@@ -100,7 +104,8 @@ p{
 #play_area{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content:center;
+    align-content: center;
     width: 480px;
     height: 480px;
     margin: auto;
@@ -116,7 +121,6 @@ p{
     width: 51%;
     height: 100%;
     transition: 1s;
-    z-index: 10;
 }
 
 #cover_right{
@@ -127,7 +131,6 @@ p{
     width: 51%;
     height: 100%;
     transition: 1s;
-    z-index: 10;
 }
 
 .square1{
@@ -135,6 +138,7 @@ p{
     width: 80px;
     background-size:cover;
     background-image: url("../Pictures/blue_square_1.png");
+    transition: 0.5s;
 }
 
 .square2{
@@ -142,6 +146,7 @@ p{
     width: 80px;
     background-size:cover;
     background-image: url("../Pictures/blue_square_4.png");
+    transition: 1s;
 }
 
 .square3{
@@ -149,6 +154,7 @@ p{
     width: 80px;
     background-size:cover;
     background-image: url("../Pictures/blue_square_2.png");
+    transition: 0.5s;
 }
 
 .square4{
@@ -156,6 +162,7 @@ p{
     width: 80px;
     background-size:cover;
     background-image: url("../Pictures/blue_square_5.png");
+    transition: 0.5s;
 }
 
 #menu{
@@ -179,7 +186,6 @@ p{
 }
 
 .button:hover{
-    cursor: pointer;
     color: darkred;
     text-shadow: 2px 2px 6px black;
     border: 2px solid darkred;
@@ -196,22 +202,24 @@ p{
     position:absolute;
     width: 210px;
     top: 300px;
-    z-index: 15;
+    z-index: 10;
     font-size: 50px;
 }
 
 #instructions{
     position:absolute;
     width: 400px;
-    top: 130px;
-    z-index: 15;
+    top: 110px;
+    z-index: 10;
 }
 
 #instructions p{
+    color: goldenrod;
     font-size: 20px;
 }
 
 #instructions span{
+    color: goldenrod;
     display: block;
     text-align: center;
     font-size: 24px;
@@ -221,6 +229,7 @@ p{
 #win_screen{
     height: 500px;
     width: 500px;
+    background-color: black;
     text-align: center;
 }
 
