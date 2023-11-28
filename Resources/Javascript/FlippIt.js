@@ -190,10 +190,8 @@ function prepareBoard(){
     setTimeout(function(){
         coverLeft.remove();
         coverRight.remove();
-        clickCount.style.visibility ="visible";
-        counterTab.style.visibility ="visible";
-        counterText.style.visibility ="visible";
-        recordTab.style.visibility ="visible";
+        counterTab.style.opacity = "1";
+        recordTab.style.opacity = "1";
     }, 1500);
     startButton.remove();
     instructions.remove();
