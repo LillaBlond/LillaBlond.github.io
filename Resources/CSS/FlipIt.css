@@ -8,13 +8,12 @@ body{
     background-image: url("../Pictures/autumn.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: black; 
 }
 
 h1{
-    text-align: center;
+    display: inline;
     color: orange;
-    height: 80px;
-    width: 50%;
     font-size: 60px;
 }
 
@@ -41,19 +40,21 @@ p{
 }
 
 #game_head{
+    text-align: center;
     width: 600px;
     margin: 120px auto;
-    display: flex;
 }
 
 #record{
     text-align:center;
+    display: inline;
+    float: left;
     padding-top: 10px;
     background-color: rgba(0,0,0,0.8);
     color: red;
     font-size: 20px;
     height: 50px;
-    width: 25%;
+    width: 80px;
     border-radius: 0 0 15px 15px;
     opacity: 0;
     transition: 0.5s;
@@ -64,21 +65,22 @@ p{
 }
 
 #counter{
+    display: inline;
+    float: right;
     height: 50px;
-    width: 25%;
+    width: 80px;
     border-radius: 0 0 10px 10px;
+    background-color: rgba(0,0,0,0.8);
     color: red;
     transition: 0.5s;
     opacity: 0;
 }
 #counter-text{
-    width: 50%;
     height: 25px;
     text-align: center;
     font-size: 15px;
     font-weight: Bold;
     color: red;
-    background-color: rgba(0,0,0,0.8);
     margin: 0 auto;
     transition: 0.5s;
     border-radius: 0 0 15px 15px;
@@ -89,9 +91,7 @@ p{
     font-size: 20px;
     font-weight: bold;
     text-align: center;
-    width: 50%;
     padding-top: 5px;
-    background-color: rgba(0,0,0,0.8);
     transition: 0.5s;
     margin: 0 auto;
 }
