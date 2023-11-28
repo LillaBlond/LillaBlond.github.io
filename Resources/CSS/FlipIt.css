@@ -112,8 +112,8 @@ p{
     bottom: 0;
     left: 0;
     background-color:darkolivegreen;
-    width: 302px;
-    height: 620px;
+    width: 51%;
+    height: 100%;
     transition: 1s;
     z-index: 10;
 }
@@ -123,8 +123,8 @@ p{
     bottom: 0;
     right: 0;
     background-color:darkolivegreen;
-    width: 302px;
-    height: 620px;
+    width: 51%;
+    height: 100%;
     transition: 1s;
     z-index: 10;
 }
@@ -223,7 +223,7 @@ p{
     text-align: center;
 }
 
-/*@media only screen and (max-width: 1440px){
+@media only screen and (max-width: 1440px){
     h1{
         font-size: 30px;
     }
@@ -244,4 +244,9 @@ p{
         width: 16.6%;
     }
 
-}*/
+    .button{
+        font-size: 15px;
+        margin: 5%;
+    }
+
+}
