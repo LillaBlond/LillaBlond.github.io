@@ -52,6 +52,7 @@ const counterText = document.getElementById("counter-text");
 const clickCount = document.getElementById("clicks");
 const graphBoard = document.getElementById("graph_board");
 const menu = document.getElementById("menu");
+const recordTab = document.getElementById("record");
 const recordValue = document.getElementById("recordValue");
 
 const blueSquareImage = "url('./Resources/Pictures/blue_square_1.png')";
@@ -189,7 +190,11 @@ function prepareBoard(){
     setTimeout(function(){
         coverLeft.remove();
         coverRight.remove();
-    }, 1100);
+        clickCount.style.visibility ="visible";
+        counterTab.style.visibility ="visible";
+        counterText.style.visibility ="visible";
+        recordTab.style.visibility ="visible";
+    }, 1500);
     startButton.remove();
     instructions.remove();
 }
@@ -202,6 +207,7 @@ function startGame(){
     clickCount.style.paddingTop = "5px";
     counterTab.style.height ="50px";
     counterText.style.fontSize ="15px";
+    counterText.style.height ="25px";
     if(playArea.childElementCount === 1){
         gameBoardArray.forEach(element =>{
             element.style.transition = "";
@@ -221,6 +227,7 @@ function endGame(){
     clickCount.style.paddingTop = "0px";
     counterTab.style.height ="0px";
     counterText.style.fontSize ="0px";
+    counterText.style.height ="0px";
     gameBoardArray.forEach(element =>{
         element.style.transition = "1s";
         element.style.opacity = "0";
