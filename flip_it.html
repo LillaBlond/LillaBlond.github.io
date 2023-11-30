@@ -4,11 +4,12 @@
         <title>FlipIt</title>
         <link href="./Resources/CSS/FlipIt.css" type="text/css" rel="stylesheet">
         <script src="./Resources/Javascript/FlippIt.js" defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
        <div id="graph_board">
             <div id="game_head">
-                <div id="record">Record <br><span id="recordValue"></span></div>
+                <div id="record">Record <br><span id="record_value"></span></div>
                 <h1>FlippIt</h1>
                 <div id="counter">
                         <div id="clicks">0</div>
@@ -17,12 +18,11 @@
             </div>
         </div>
         <div id="board">
-            
             <div id="play_area">
                 <div id="instructions"><p>Flip the squares to fill the board 
-                    with same color. Every time you flip a square the squares around it 
+                    with the same color. Every time you flip a square the squares around it 
                     change as well. See if you can make it with as few clicks as possible.<br><br><span>Good Luck!</span></p></div>
-                <div id="startButton" class="button">Play</div>
+                <div id="start_button" class="button">Play</div>
                 <div id="cover_left"></div>
                 <div id="cover_right"></div>
                 <div class="square1" id="1:1"></div>
@@ -63,9 +63,11 @@
                 <div class="square1" id="6:6"></div>
             </div>
             <div id="menu">
-                <div id="newGameButton" class="button">New Game</div>
-                <div id="resetButton" class="button">Reset Board</div>
+                <div id="new_game_button" class="button">New Game</div>
+                <div id="reset_button" class="button">Reset Board</div>
+                <div id="rules_button" class="button">Rules</div>
             </div>
         </div>
+           
     </body>
 </html>

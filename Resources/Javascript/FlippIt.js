@@ -38,10 +38,11 @@ const square6_6 = document.getElementById("6:6");
 
 
 
-const startButton = document.getElementById("startButton");
+const startButton = document.getElementById("start_button");
 const instructions = document.getElementById("instructions");
-const newGameButton = document.getElementById("newGameButton");
-const resetButton = document.getElementById("resetButton");
+const newGameButton = document.getElementById("new_game_button");
+const resetButton = document.getElementById("reset_button");
+const buttonArray = [startButton,newGameButton,resetButton];
 const playArea = document.getElementById("play_area");
 const square1Class = document.getElementsByClassName("square1");
 const square2Class = document.getElementsByClassName("square2");
@@ -53,7 +54,16 @@ const clickCount = document.getElementById("clicks");
 const graphBoard = document.getElementById("graph_board");
 const menu = document.getElementById("menu");
 const recordTab = document.getElementById("record");
-const recordValue = document.getElementById("recordValue");
+const recordValue = document.getElementById("record_value");
+const rulesButton = document.getElementById("rules_button");
+const instructionsText = document.getElementById("instructions").getElementsByTagName("p");
+const instructionsSpan = document.getElementById("instructions").getElementsByTagName("span");
+// instructions popup creation
+const exitInstructions= document.createElement("div");
+exitInstructions.id = "exit_instructions";
+exitInstructions.innerHTML = "X";
+
+
 
 const blueSquareImage = "url('./Resources/Pictures/blue_square_1.png')";
 const brownSquareImage = "url('./Resources/Pictures/blue_square_4.png')";
@@ -87,6 +97,8 @@ let active = false;
 let freeze = false;
 let lastBoardSetup;
 let record = 0;
+let frontScreenShowing = true;
+let winScreenShowing = false;
 
 /*
 A function that start the game when visitor click play
@@ -192,12 +204,14 @@ function prepareBoard(){
         coverRight.remove();
         counterTab.style.opacity = "1";
         recordTab.style.opacity = "1";
+        rulesButton.style.opacity = "1";
     }, 1500);
     startButton.remove();
     instructions.remove();
 }
 
 function startGame(){
+    winScreenShowing = false;
     counter = 0;
     active = true;
     clickCount.innerHTML = counter
@@ -213,6 +227,7 @@ function startGame(){
             playArea.appendChild(element)})
             document.getElementById("win_screen").remove();
             menu.appendChild(resetButton);
+            menu.appendChild(rulesButton);
     }
     if(counter){
         recordValue.innerHTML = record;}
@@ -235,13 +250,16 @@ function endGame(){
     gameBoardArray.forEach(element =>{
         element.remove()
     });
-    resetButton.remove();}, 700);
+    resetButton.remove();
+    rulesButton.remove();
+}, 700);
     if(record === 0 || counter < record){
         saveRecord();
     }
 };
 
 function showEndScreen(){
+    winScreenShowing = true;
     const winScreen= document.createElement("div"); 
     winScreen.id = "win_screen";
     winScreen.innerHTML = `<h2>Congratulations!</h2>
@@ -363,252 +381,296 @@ function BoardSetup(boardSetupValue){
     }    
 }
 
-
-//clicking on game tiles funtionality
+//Functions for the game squares
 
 gameBoardArray.forEach(element => {
-    element.addEventListener("click", () =>{
-        if(active && !freeze){
-            switch(element){
-                case square1_1:
-                    flipTile(square1_1);
-                    flipTile(square1_2);
-                    flipTile(square2_1);
-                break;
-                case square1_2:
-                    flipTile(square1_2);
-                    flipTile(square1_1);
-                    flipTile(square1_3);
-                    flipTile(square2_2);
-                break;
-                case square1_3:
-                    flipTile(square1_3);
-                    flipTile(square1_2);
-                    flipTile(square1_4);
-                    flipTile(square2_3);
-                break;
-                case square1_4:
-                    flipTile(square1_4);
-                    flipTile(square1_3);
-                    flipTile(square1_5);
-                    flipTile(square2_4);
-                break;
-                case square1_5:
-                    flipTile(square1_5);
-                    flipTile(square1_4);
-                    flipTile(square1_6);
-                    flipTile(square2_5);
-                break;
-                case square1_6:
-                    flipTile(square1_6);
-                    flipTile(square1_5);
-                    flipTile(square2_6);
-                break;
-                case square2_1:
-                    flipTile(square2_1);
-                    flipTile(square2_2);
-                    flipTile(square1_1);
-                    flipTile(square3_1);
-                break;
-                case square2_2:
-                    flipTile(square2_2);
-                    flipTile(square2_1);
-                    flipTile(square2_3);
-                    flipTile(square1_2);
-                    flipTile(square3_2);
-                break;
-                case square2_3:
-                    flipTile(square2_3);
-                    flipTile(square2_2);
-                    flipTile(square2_4);
-                    flipTile(square1_3);
-                    flipTile(square3_3);
-                break;
-                case square2_4:
-                    flipTile(square2_4);
-                    flipTile(square2_3);
-                    flipTile(square2_5);
-                    flipTile(square1_4);
-                    flipTile(square3_4);
-                break;
-                case square2_5:
-                    flipTile(square2_5);
-                    flipTile(square2_4);
-                    flipTile(square2_6);
-                    flipTile(square1_5);
-                    flipTile(square3_5);
-                break;
-                case square2_6:
-                    flipTile(square2_6);
-                    flipTile(square2_5);
-                    flipTile(square1_6);
-                    flipTile(square3_6);
-                break;
-                case square3_1:
-                    flipTile(square3_1);
-                    flipTile(square3_2);
-                    flipTile(square2_1);
-                    flipTile(square4_1);
-                break;
-                case square3_2:
-                    flipTile(square3_2);
-                    flipTile(square3_1);
-                    flipTile(square3_3);
-                    flipTile(square2_2);
-                    flipTile(square4_2);
-                break;
-                case square3_3:
-                    flipTile(square3_3);
-                    flipTile(square3_2);
-                    flipTile(square3_4);
-                    flipTile(square2_3);
-                    flipTile(square4_3);
-                break;
-                case square3_4:
-                    flipTile(square3_4);
-                    flipTile(square3_3);
-                    flipTile(square3_5);
-                    flipTile(square2_4);
-                    flipTile(square4_4);
-                break;
-                case square3_5:
-                    flipTile(square3_5);
-                    flipTile(square3_4);
-                    flipTile(square3_6);
-                    flipTile(square2_5);
-                    flipTile(square4_5);
-                break;
-                case square3_6:
-                    flipTile(square3_6);
-                    flipTile(square3_5);
-                    flipTile(square2_6);
-                    flipTile(square4_6);
-                break;
-                case square4_1:
-                    flipTile(square4_1);
-                    flipTile(square4_2);
-                    flipTile(square3_1);
-                    flipTile(square5_1);
-                break;
-                case square4_2:
-                    flipTile(square4_2);
-                    flipTile(square4_1);
-                    flipTile(square4_3);
-                    flipTile(square3_2);
-                    flipTile(square5_2);
-                break;
-                case square4_3:
-                    flipTile(square4_3);
-                    flipTile(square4_2);
-                    flipTile(square4_4);
-                    flipTile(square3_3);
-                    flipTile(square5_3);
-                break;
-                case square4_4:
-                    flipTile(square4_4);
-                    flipTile(square4_3);
-                    flipTile(square4_5);
-                    flipTile(square3_4);
-                    flipTile(square5_4);
-                break;
-                case square4_5:
-                    flipTile(square4_5);
-                    flipTile(square4_4);
-                    flipTile(square4_6);
-                    flipTile(square3_5);
-                    flipTile(square5_5);
-                break;
-                case square4_6:
-                    flipTile(square4_6);
-                    flipTile(square4_5);
-                    flipTile(square3_6);
-                    flipTile(square5_6);
-                break;
-                case square5_1:
-                    flipTile(square5_1);
-                    flipTile(square5_2);
-                    flipTile(square4_1);
-                    flipTile(square6_1);
-                break;
-                case square5_2:
-                    flipTile(square5_2);
-                    flipTile(square5_1);
-                    flipTile(square5_3);
-                    flipTile(square4_2);
-                    flipTile(square6_2);
-                break;
-                case square5_3:
-                    flipTile(square5_3);
-                    flipTile(square5_2);
-                    flipTile(square5_4);
-                    flipTile(square4_3);
-                    flipTile(square6_3);
-                break;
-                case square5_4:
-                    flipTile(square5_4);
-                    flipTile(square5_3);
-                    flipTile(square5_5);
-                    flipTile(square4_4);
-                    flipTile(square6_4);
-                break;
-                case square5_5:
-                    flipTile(square5_5);
-                    flipTile(square5_4);
-                    flipTile(square5_6);
-                    flipTile(square4_5);
-                    flipTile(square6_5);
-                break;
-                case square5_6:
-                    flipTile(square5_6);
-                    flipTile(square5_5);
-                    flipTile(square4_6);
-                    flipTile(square6_6);
-                break;
-                case square6_1:
-                    flipTile(square6_1);
-                    flipTile(square6_2);
-                    flipTile(square5_1);
-                break;
-                case square6_2:
-                    flipTile(square6_2);
-                    flipTile(square6_1);
-                    flipTile(square6_3);
-                    flipTile(square5_2);
-                break;
-                case square6_3:
-                    flipTile(square6_3);
-                    flipTile(square6_2);
-                    flipTile(square6_4);
-                    flipTile(square5_3);
-                break;
-                case square6_4:
-                    flipTile(square6_4);
-                    flipTile(square6_3);
-                    flipTile(square6_5);
-                    flipTile(square5_4);
-                break;
-                case square6_5:
-                    flipTile(square6_5);
-                    flipTile(square6_4);
-                    flipTile(square6_6);
-                    flipTile(square5_5);
-                break;
-                case square6_6:
-                    flipTile(square6_6);
-                    flipTile(square6_5);
-                    flipTile(square5_6);
-                break;
-            }
-        increaseCounter();
-        CheckStatus();  
+    element.addEventListener("mouseover", () => {
+        highlight(element)});
+        element.addEventListener("mouseout", () => {
+            deHighlight(element)});
+        element.addEventListener("click", () =>{
+            if(active && !freeze){
+                switch(element){
+                    case square1_1:
+                        flipTile(square1_1);
+                        flipTile(square1_2);
+                        flipTile(square2_1);
+                    break;
+                    case square1_2:
+                        flipTile(square1_2);
+                        flipTile(square1_1);
+                        flipTile(square1_3);
+                        flipTile(square2_2);
+                    break;
+                    case square1_3:
+                        flipTile(square1_3);
+                        flipTile(square1_2);
+                        flipTile(square1_4);
+                        flipTile(square2_3);
+                    break;
+                    case square1_4:
+                        flipTile(square1_4);
+                        flipTile(square1_3);
+                        flipTile(square1_5);
+                        flipTile(square2_4);
+                    break;
+                    case square1_5:
+                        flipTile(square1_5);
+                        flipTile(square1_4);
+                        flipTile(square1_6);
+                        flipTile(square2_5);
+                    break;
+                    case square1_6:
+                        flipTile(square1_6);
+                        flipTile(square1_5);
+                        flipTile(square2_6);
+                    break;
+                    case square2_1:
+                        flipTile(square2_1);
+                        flipTile(square2_2);
+                        flipTile(square1_1);
+                        flipTile(square3_1);
+                    break;
+                    case square2_2:
+                        flipTile(square2_2);
+                        flipTile(square2_1);
+                        flipTile(square2_3);
+                        flipTile(square1_2);
+                        flipTile(square3_2);
+                    break;
+                    case square2_3:
+                        flipTile(square2_3);
+                        flipTile(square2_2);
+                        flipTile(square2_4);
+                        flipTile(square1_3);
+                        flipTile(square3_3);
+                    break;
+                    case square2_4:
+                        flipTile(square2_4);
+                        flipTile(square2_3);
+                        flipTile(square2_5);
+                        flipTile(square1_4);
+                        flipTile(square3_4);
+                    break;
+                    case square2_5:
+                        flipTile(square2_5);
+                        flipTile(square2_4);
+                        flipTile(square2_6);
+                        flipTile(square1_5);
+                        flipTile(square3_5);
+                    break;
+                    case square2_6:
+                        flipTile(square2_6);
+                        flipTile(square2_5);
+                        flipTile(square1_6);
+                        flipTile(square3_6);
+                    break;
+                    case square3_1:
+                        flipTile(square3_1);
+                        flipTile(square3_2);
+                        flipTile(square2_1);
+                        flipTile(square4_1);
+                    break;
+                    case square3_2:
+                        flipTile(square3_2);
+                        flipTile(square3_1);
+                        flipTile(square3_3);
+                        flipTile(square2_2);
+                        flipTile(square4_2);
+                    break;
+                    case square3_3:
+                        flipTile(square3_3);
+                        flipTile(square3_2);
+                        flipTile(square3_4);
+                        flipTile(square2_3);
+                        flipTile(square4_3);
+                    break;
+                    case square3_4:
+                        flipTile(square3_4);
+                        flipTile(square3_3);
+                        flipTile(square3_5);
+                        flipTile(square2_4);
+                        flipTile(square4_4);
+                    break;
+                    case square3_5:
+                        flipTile(square3_5);
+                        flipTile(square3_4);
+                        flipTile(square3_6);
+                        flipTile(square2_5);
+                        flipTile(square4_5);
+                    break;
+                    case square3_6:
+                        flipTile(square3_6);
+                        flipTile(square3_5);
+                        flipTile(square2_6);
+                        flipTile(square4_6);
+                    break;
+                    case square4_1:
+                        flipTile(square4_1);
+                        flipTile(square4_2);
+                        flipTile(square3_1);
+                        flipTile(square5_1);
+                    break;
+                    case square4_2:
+                        flipTile(square4_2);
+                        flipTile(square4_1);
+                        flipTile(square4_3);
+                        flipTile(square3_2);
+                        flipTile(square5_2);
+                    break;
+                    case square4_3:
+                        flipTile(square4_3);
+                        flipTile(square4_2);
+                        flipTile(square4_4);
+                        flipTile(square3_3);
+                        flipTile(square5_3);
+                    break;
+                    case square4_4:
+                        flipTile(square4_4);
+                        flipTile(square4_3);
+                        flipTile(square4_5);
+                        flipTile(square3_4);
+                        flipTile(square5_4);
+                    break;
+                    case square4_5:
+                        flipTile(square4_5);
+                        flipTile(square4_4);
+                        flipTile(square4_6);
+                        flipTile(square3_5);
+                        flipTile(square5_5);
+                    break;
+                    case square4_6:
+                        flipTile(square4_6);
+                        flipTile(square4_5);
+                        flipTile(square3_6);
+                        flipTile(square5_6);
+                    break;
+                    case square5_1:
+                        flipTile(square5_1);
+                        flipTile(square5_2);
+                        flipTile(square4_1);
+                        flipTile(square6_1);
+                    break;
+                    case square5_2:
+                        flipTile(square5_2);
+                        flipTile(square5_1);
+                        flipTile(square5_3);
+                        flipTile(square4_2);
+                        flipTile(square6_2);
+                    break;
+                    case square5_3:
+                        flipTile(square5_3);
+                        flipTile(square5_2);
+                        flipTile(square5_4);
+                        flipTile(square4_3);
+                        flipTile(square6_3);
+                    break;
+                    case square5_4:
+                        flipTile(square5_4);
+                        flipTile(square5_3);
+                        flipTile(square5_5);
+                        flipTile(square4_4);
+                        flipTile(square6_4);
+                    break;
+                    case square5_5:
+                        flipTile(square5_5);
+                        flipTile(square5_4);
+                        flipTile(square5_6);
+                        flipTile(square4_5);
+                        flipTile(square6_5);
+                    break;
+                    case square5_6:
+                        flipTile(square5_6);
+                        flipTile(square5_5);
+                        flipTile(square4_6);
+                        flipTile(square6_6);
+                    break;
+                    case square6_1:
+                        flipTile(square6_1);
+                        flipTile(square6_2);
+                        flipTile(square5_1);
+                    break;
+                    case square6_2:
+                        flipTile(square6_2);
+                        flipTile(square6_1);
+                        flipTile(square6_3);
+                        flipTile(square5_2);
+                    break;
+                    case square6_3:
+                        flipTile(square6_3);
+                        flipTile(square6_2);
+                        flipTile(square6_4);
+                        flipTile(square5_3);
+                    break;
+                    case square6_4:
+                        flipTile(square6_4);
+                        flipTile(square6_3);
+                        flipTile(square6_5);
+                        flipTile(square5_4);
+                    break;
+                    case square6_5:
+                        flipTile(square6_5);
+                        flipTile(square6_4);
+                        flipTile(square6_6);
+                        flipTile(square5_5);
+                    break;
+                    case square6_6:
+                        flipTile(square6_6);
+                        flipTile(square6_5);
+                        flipTile(square5_6);
+                    break;
+                }
+                increaseCounter();
+                CheckStatus();  
+                }
+            })
+    }
+)
+
+//function for the Buttons
+
+buttonArray.forEach(element => {
+    
+    element.addEventListener("mouseover", () =>{
+        if(active || frontScreenShowing || winScreenShowing){
+        element.style.cursor ="pointer";
+        element.style.textShadow ="1px 1px 6px";
+        element.style.border = "2px solid darkorange";
         }
     })
-})
+    element.addEventListener("mouseout", () =>{
+        if(active || frontScreenShowing || winScreenShowing){
+        element.style.cursor ="default";
+        element.style.textShadow ="";
+        element.style.color ="darkorange";
+        element.style.border = "2px solid darkorange";
+        element.style.backgroundColor = "rgba(47,79,79,0.7)";
+        }
+    })
+    element.addEventListener("mousedown", () =>{
+        if(active || frontScreenShowing || winScreenShowing){
+            element.style.color ="rgb(114,74,25)";
+            element.style.border = "2px solid rgb(114,74,25)";
+            element.style.backgroundColor = "rgb(25,42,42)";
+        }
+    })
+    element.addEventListener("mouseup",() =>{
+        setTimeout(()=>{
+        element.style.color ="darkorange";
+        element.style.textShadow ="";
+        element.style.border = "2px solid darkorange";
+        element.style.backgroundColor = "rgba(47,79,79,0.7)";
+        },100);
+    })
+    
+}
+)
 
 startButton.onclick = function (){
     if(!active){
     prepareBoard();
     startGame();
+    frontScreenShowing = false;
     setTimeout(function(){
         active = true;
     }, 700);
@@ -622,6 +684,60 @@ startButton.onclick = function (){
     }
 }
 
+rulesButton.onmouseover = function (){
+    rulesButton.style.cursor ="pointer";
+    rulesButton.style.textShadow ="1px 1px 6px";
+    rulesButton.style.border = "2px solid orange";
+}
+rulesButton.onmouseout = function (){
+    rulesButton.style.cursor ="default";
+    rulesButton.style.textShadow ="";
+    rulesButton.style.color ="darkorange";
+    rulesButton.style.border = "2px solid darkorange";
+    rulesButton.style.backgroundColor = "rgba(47,79,79,0.7)";
+}
+rulesButton.onmousedown = function (){
+        rulesButton.style.color ="rgb(114,74,25)";
+        rulesButton.style.border = "2px solid rgb(114,74,25)";
+        rulesButton.style.backgroundColor = "rgb(25,42,42)";
+        if(active){
+            active = false;
+            playArea.appendChild(instructions);
+            instructions.style.backgroundColor ="lightyellow";
+            instructions.style.border = "5px solid darkgoldenrod";
+            instructionsText[0].style.color = "black";
+            instructionsSpan[0].style.color = "black";
+            newGameButton.style.opacity = "0.3";
+            resetButton.style.opacity = "0.3";
+            counterTab.style.opacity = "0.3";
+            recordTab.style.opacity = "0.3";
+            instructions.insertBefore(exitInstructions,instructions.children[0]);
+            gameBoardArray.forEach(element =>{
+                element.style.opacity = "0.3";
+            })
+            }
+            else{
+                active = true;
+            playArea.removeChild(instructions);
+            newGameButton.style.opacity = "";
+            resetButton.style.opacity = "";
+            counterTab.style.opacity = "1";
+            recordTab.style.opacity = "1";
+            instructions.insertBefore(exitInstructions,instructions.children[0]);
+            gameBoardArray.forEach(element =>{
+                element.style.opacity = "";
+            })
+        }
+}
+rulesButton.onmouseup = function(){
+    setTimeout(()=>{
+    rulesButton.style.color ="darkorange";
+    rulesButton.style.textShadow ="";
+    rulesButton.style.border = "2px solid darkorange";
+    rulesButton.style.backgroundColor = "rgba(47,79,79,0.7)";
+    },100);
+}
+
 resetButton.onclick = function (){
     if(active){
         startGame();
@@ -630,22 +746,22 @@ resetButton.onclick = function (){
 }
 
 newGameButton.onclick = function (){
+        if(playArea.childElementCount !== 37){
         startGame();
         BoardSetup(setupRandomizer());
+    }
 }
 
+exitInstructions.onclick = function(){
+    active = true;
+    playArea.removeChild(instructions);
+    newGameButton.style.opacity = "";
+    resetButton.style.opacity = "";
+    counterTab.style.opacity = "1";
+    recordTab.style.opacity = "1";
+    instructions.insertBefore(exitInstructions,instructions.children[0]);
+    gameBoardArray.forEach(element =>{
+        element.style.opacity = "";
+    })
 
-//hover effects
-
-gameBoardArray.forEach(element => {
-    element.addEventListener("mouseover", () => {
-        highlight(element)});
-    }
-)
-
-gameBoardArray.forEach(element => {
-    element.addEventListener("mouseout", () => {
-        deHighlight(element)});
-    }
-)
-
+}

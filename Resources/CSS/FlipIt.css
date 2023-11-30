@@ -12,9 +12,10 @@ body{
 }
 
 h1{
+    width: 50%;
     display: inline;
     color: orange;
-    font-size: 60px;
+    font-size: 50px;
 }
 
 h2{
@@ -40,19 +41,22 @@ p{
 }
 
 #game_head{
+    position: relative;
     text-align: center;
     width: 600px;
     margin: 120px auto;
 }
 
 #record{
+    position:absolute;
+    top: 0;
+    left: 0;
     text-align:center;
-    display: inline;
-    float: left;
-    padding-top: 10px;
+    padding-top: 5px;
     background-color: rgba(0,0,0,0.8);
     color: red;
     font-size: 20px;
+    font-weight: bold;
     height: 50px;
     width: 80px;
     border-radius: 0 0 15px 15px;
@@ -60,13 +64,14 @@ p{
     transition: 0.5s;
 }
 
-#recordValue{
+#record_value{
     color: red;
 }
 
 #counter{
-    display: inline;
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
     height: 50px;
     width: 80px;
     border-radius: 0 0 10px 10px;
@@ -99,7 +104,7 @@ p{
 #board{
     position: relative;
     background-color: rgba(0, 0, 0, 0.8);
-    height:620px;
+    height: 600px;
     width: 600px;
     margin: 80px auto 0px;
 }
@@ -119,7 +124,7 @@ p{
     position:absolute;
     bottom: 0;
     left: 0;
-    background-color:darkolivegreen;
+    background-color:saddlebrown;
     width: 300px;
     height: 620px;
     transition: 1s;
@@ -130,7 +135,7 @@ p{
     position:absolute;
     bottom: 0;
     right: 0;
-    background-color:darkolivegreen;
+    background-color:saddlebrown;
     width: 300px;
     height: 620px;
     transition: 1s;
@@ -166,40 +171,29 @@ p{
 }
 
 #menu{
-    margin: 30px auto;
     text-align:center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .button{
+    cursor:default;
     display:inline;
-    font-size: 30px;
-    text-transform:uppercase;
+    font-size: 25px;
     letter-spacing: 0.1em;
-    color: darkred;
+    color: darkorange;
     font-weight: bold;
     text-align: center;
-    background-color:darkorange;
-    border: 2px solid grey;
-    margin: 30px 20px;
+    background-color: rgba(47,79,79,0.7);
+    border: 2px solid darkorange;
+    margin: 30px 5px;
+    padding: 5px;
     transition: 0.5s;
     border-radius: 10px;
 }
 
-.button:hover{
-    cursor: pointer;
-    color: darkred;
-    text-shadow: 2px 2px 6px black;
-    border: 2px solid darkred;
-}
-
-.button:active{
-    color: black;
-    background-color:olive;
-    border: 2px solid lightgreen;
-    transition: 0s;
-}
-
-#startButton{
+#start_button{
     position:absolute;
     width: 210px;
     top: 300px;
@@ -210,12 +204,15 @@ p{
 #instructions{
     position:absolute;
     width: 400px;
+    height: 210px;
     top: 130px;
     z-index: 15;
 }
 
 #instructions p{
     font-size: 20px;
+    margin: auto 20px;
+    text-align: justify;
 }
 
 #instructions span{
@@ -223,6 +220,19 @@ p{
     text-align: center;
     font-size: 24px;
     font-weight: bold;
+}
+
+#exit_instructions{
+    color: white;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    margin: 3px 3px 20px auto;
+    font-size: 20px;
+    background-color: black;
+    padding: 5px;
+    cursor: pointer;
+
 }
 
 #win_screen{
