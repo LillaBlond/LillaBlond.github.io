@@ -185,8 +185,8 @@ p{
     color: darkorange;
     font-weight: bold;
     text-align: center;
-    background-color: rgba(47,79,79,0.7);
-    border: 2px solid darkorange;
+    background-color: rgb(74, 42, 31);
+    border: 3px solid rgb(81, 47, 7);
     margin: 30px 5px;
     padding: 5px;
     transition: 0.5s;
@@ -204,7 +204,6 @@ p{
 #instructions{
     position:absolute;
     width: 400px;
-    height: 210px;
     top: 130px;
     z-index: 15;
 }
@@ -220,18 +219,21 @@ p{
     text-align: center;
     font-size: 24px;
     font-weight: bold;
+    padding-bottom: 20px;
 }
 
 #exit_instructions{
-    color: white;
+    color: darkorange;
     height: 20px;
     width: 20px;
     text-align: center;
     margin: 3px 3px 20px auto;
     font-size: 20px;
-    background-color: black;
+    background-color: rgb(74, 42, 31);
     padding: 5px;
     cursor: pointer;
+    border: 2px solid rgb(81 47 7);
+    transition: 0.1s;
 
 }
 

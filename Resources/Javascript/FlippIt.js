@@ -635,7 +635,8 @@ buttonArray.forEach(element => {
         if(active || frontScreenShowing || winScreenShowing){
         element.style.cursor ="pointer";
         element.style.textShadow ="1px 1px 6px";
-        element.style.border = "2px solid darkorange";
+        element.style.border = "3px solid darkorange";
+        element.style.boxShadow = "2px 2px 6px";
         }
     })
     element.addEventListener("mouseout", () =>{
@@ -643,14 +644,15 @@ buttonArray.forEach(element => {
         element.style.cursor ="default";
         element.style.textShadow ="";
         element.style.color ="darkorange";
-        element.style.border = "2px solid darkorange";
-        element.style.backgroundColor = "rgba(47,79,79,0.7)";
+        element.style.border = "3px solid rgb(81 47 7)";
+        element.style.backgroundColor = "rgb(74, 42, 31)";
+        element.style.boxShadow = "";
         }
     })
     element.addEventListener("mousedown", () =>{
         if(active || frontScreenShowing || winScreenShowing){
             element.style.color ="rgb(114,74,25)";
-            element.style.border = "2px solid rgb(114,74,25)";
+            element.style.border = "3px solid rgb(114,74,25)";
             element.style.backgroundColor = "rgb(25,42,42)";
         }
     })
@@ -658,8 +660,9 @@ buttonArray.forEach(element => {
         setTimeout(()=>{
         element.style.color ="darkorange";
         element.style.textShadow ="";
-        element.style.border = "2px solid darkorange";
-        element.style.backgroundColor = "rgba(47,79,79,0.7)";
+        element.style.boxShadow ="";
+        element.style.border = "3px solid rgb(81 47 7)";
+        element.style.backgroundColor = "rgb(74, 42, 31)";
         },100);
     })
     
@@ -687,24 +690,26 @@ startButton.onclick = function (){
 rulesButton.onmouseover = function (){
     rulesButton.style.cursor ="pointer";
     rulesButton.style.textShadow ="1px 1px 6px";
-    rulesButton.style.border = "2px solid orange";
+    rulesButton.style.border = "3px solid orange";
+    rulesButton.style.boxShadow = "2px 2px 6px";
 }
 rulesButton.onmouseout = function (){
     rulesButton.style.cursor ="default";
     rulesButton.style.textShadow ="";
     rulesButton.style.color ="darkorange";
-    rulesButton.style.border = "2px solid darkorange";
-    rulesButton.style.backgroundColor = "rgba(47,79,79,0.7)";
+    rulesButton.style.border = "3px solid rgb(81 47 7)";
+    rulesButton.style.backgroundColor = "rgb(74, 42, 31)";
+    rulesButton.style.boxShadow = "";
 }
 rulesButton.onmousedown = function (){
         rulesButton.style.color ="rgb(114,74,25)";
-        rulesButton.style.border = "2px solid rgb(114,74,25)";
+        rulesButton.style.border = "3px solid rgb(114,74,25)";
         rulesButton.style.backgroundColor = "rgb(25,42,42)";
         if(active){
             active = false;
             playArea.appendChild(instructions);
             instructions.style.backgroundColor ="lightyellow";
-            instructions.style.border = "5px solid darkgoldenrod";
+            instructions.style.border = "3px solid darkgoldenrod";
             instructionsText[0].style.color = "black";
             instructionsSpan[0].style.color = "black";
             newGameButton.style.opacity = "0.3";
@@ -733,8 +738,9 @@ rulesButton.onmouseup = function(){
     setTimeout(()=>{
     rulesButton.style.color ="darkorange";
     rulesButton.style.textShadow ="";
-    rulesButton.style.border = "2px solid darkorange";
-    rulesButton.style.backgroundColor = "rgba(47,79,79,0.7)";
+    rulesButton.style.border = "3px solid rgb(81 47 7)";
+    rulesButton.style.backgroundColor = "rgb(74, 42, 31)";
+    rulesButton.style.boxShadow = "";
     },100);
 }
 
@@ -752,16 +758,37 @@ newGameButton.onclick = function (){
     }
 }
 
-exitInstructions.onclick = function(){
-    active = true;
-    playArea.removeChild(instructions);
-    newGameButton.style.opacity = "";
-    resetButton.style.opacity = "";
-    counterTab.style.opacity = "1";
-    recordTab.style.opacity = "1";
-    instructions.insertBefore(exitInstructions,instructions.children[0]);
-    gameBoardArray.forEach(element =>{
-        element.style.opacity = "";
-    })
+exitInstructions.onmouseover = function(){
+    exitInstructions.style.color = "orange";
+    exitInstructions.style.border = "2px solid orange";
+    exitInstructions.style.fontWeight = "bold";
+}
 
+exitInstructions.onmouseout = function(){
+    exitInstructions.style.backgroundColor = "";
+    exitInstructions.style.color = "darkgoldenrod";
+    exitInstructions.style.border = "2px solid darkgoldenrod";
+    exitInstructions.style.fontWeight = "";
+}
+
+exitInstructions.onmousedown= function(){
+    exitInstructions.style.color ="rgb(114,74,25)";
+    exitInstructions.style.border = "2px solid rgb(114,74,25)";
+    exitInstructions.style.backgroundColor = "rgb(25,42,42)";
+    setTimeout(() => {
+        active = true;
+        playArea.removeChild(instructions);
+        newGameButton.style.opacity = "";
+        resetButton.style.opacity = "";
+        counterTab.style.opacity = "1";
+        recordTab.style.opacity = "1";
+        instructions.insertBefore(exitInstructions,instructions.children[0]);
+        gameBoardArray.forEach(element =>{
+        element.style.opacity = "";
+        exitInstructions.style.backgroundColor = "";
+        exitInstructions.style.color = "darkgoldenrod";
+        exitInstructions.style.border = "2px solid darkgoldenrod";
+        exitInstructions.style.fontWeight = "";
+    })
+    },100);
 }
