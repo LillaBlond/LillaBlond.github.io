@@ -32,6 +32,7 @@ p{
     position: absolute;
     height: 250px;
     width: 100%;
+    min-width: 600px;
     background-image: url("../Pictures/graph_board.png");
     background-repeat: no-repeat;
     background-position: center;
