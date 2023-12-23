@@ -121,53 +121,44 @@ p{
 
 }
 
-#cover_left{
+#cover_left, #cover_right{
     position:absolute;
     bottom: 0;
-    left: 0;
     background-color:saddlebrown;
-    width: 300px;
-    height: 620px;
+    width: 51%;
+    height: 100%;
     transition: 1s;
-    z-index: 10;
+}
+
+#cover_left{
+    left: 0;
+    z-index: 12;
 }
 
 #cover_right{
-    position:absolute;
-    bottom: 0;
     right: 0;
-    background-color:saddlebrown;
-    width: 300px;
-    height: 620px;
-    transition: 1s;
     z-index: 10;
 }
 
-.square1{
+.square1, .square2, .square3, .square4 {
     height: 80px;
     width: 80px;
     background-size:cover;
+}
+
+.square1{
     background-image: url("../Pictures/blue_square_1.png");
 }
 
 .square2{
-    height: 80px;
-    width: 80px;
-    background-size:cover;
     background-image: url("../Pictures/blue_square_4.png");
 }
 
 .square3{
-    height: 80px;
-    width: 80px;
-    background-size:cover;
     background-image: url("../Pictures/blue_square_2.png");
 }
 
 .square4{
-    height: 80px;
-    width: 80px;
-    background-size:cover;
     background-image: url("../Pictures/blue_square_5.png");
 }
 
@@ -176,6 +167,7 @@ p{
     display: flex;
     align-items: center;
     justify-content: space-around;
+    height: 20%;
 }
 
 .button{
@@ -195,11 +187,12 @@ p{
 }
 
 #start_button{
-    position:absolute;
-    width: 210px;
-    top: 300px;
+    box-sizing: border-box;
+    width: 100%;
     z-index: 15;
     font-size: 50px;
+    display: block;
+    margin: 0;
 }
 
 #instructions{
@@ -242,4 +235,51 @@ p{
     height: 500px;
     width: 500px;
     text-align: center;
+}
+
+@media screen and (max-width: 500px){
+
+    #graph_board{
+        min-width: 300px;
+    }
+
+    .square1, .square2, .square3, .square4 {
+        width: 40px;
+        height: 40px;
+    }
+
+    #play_area{
+        width: 240px;
+        height: 240px;
+        padding-top: 10px;
+    }
+
+    #board{
+        height: 300px;
+        width: 300px;
+    }
+
+    #game_head, #instructions{
+        width: 300px;
+    }
+
+    #instructions{
+        top: 90px;
+    }
+
+    h1{
+        font-size: 30px;
+    }
+
+    .button, #instructions p{
+        font-size: 15px;
+    }
+
+    #start_button{
+        font-size: 25px;
+        top: 210px;
+        width: 80%;
+        margin: auto;
+    }
+    
 }
