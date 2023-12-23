@@ -197,7 +197,7 @@ p{
 
 #instructions{
     position:absolute;
-    width: 400px;
+    width: 80%;
     top: 130px;
     z-index: 15;
 }
@@ -206,6 +206,7 @@ p{
     font-size: 20px;
     margin: auto 20px;
     text-align: justify;
+    padding: 20px 0;
 }
 
 #instructions span{
@@ -259,12 +260,12 @@ p{
         width: 300px;
     }
 
-    #game_head, #instructions{
+    #game_head{
         width: 300px;
     }
 
     #instructions{
-        top: 90px;
+        top: 80px;
     }
 
     h1{
@@ -272,7 +273,11 @@ p{
     }
 
     #instructions p{
-        font-size: 15px;
+        font-size: 10px;
+    }
+
+    #instructions span{
+        font-size: 16px;
     }
 
     .button {
@@ -284,6 +289,18 @@ p{
         top: 210px;
         width: 80%;
         margin: auto;
+    }
+
+    #exit_instructions{
+        padding: 0;
+        font-size: 15px;
+        height: 15px;
+        width: 15px;
+        margin: 3px 3px 10px auto;
+    }
+
+    #counter{
+        width: 50px;
     }
     
 }

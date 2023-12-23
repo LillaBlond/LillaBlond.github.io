@@ -125,10 +125,12 @@ End scene - all tiles are the same color
 
 */
 //Functions
-// Function that flip the tile to opposite color
+// Function that flip the tile to opposite color.
 function flipTile(tile){
     if (tile.className === "square1" || tile.className === "square3") {
         tile.className = "square2";
+
+        if(active){
         tile.style.transform = "rotateY(180deg)";
         tile.style.transition = "0.5s";
         freeze = true;
@@ -137,9 +139,10 @@ function flipTile(tile){
             tile.style.transition = "";
             freeze = false;
             }, 300);
-    }
+    }}
     else {
         tile.className = "square1";
+        if(active){
         tile.style.transform = "rotateY(180deg)";
         tile.style.transition = "0.5s";
         freeze = true;
@@ -148,18 +151,10 @@ function flipTile(tile){
             tile.style.transition = "";
             freeze = false;
             }, 300);
-    }
+    }}
 }
 
-function flipTileBoard(tile){
-    if (tile.className === "square1" || tile.className === "square3") {
-        tile.className = "square2";
-    }
-    else {
-        tile.className = "square1";
-    }
-}
-
+//Function that change the color of the tile when mouse over.
 function highlight(tile){
     if(active){
         tile.style.cursor = "pointer";
@@ -172,6 +167,7 @@ function highlight(tile){
     }
 }
 
+//Function that change the color back to the original color once mouse leave.
 function deHighlight(tile){
     if(active){
         tile.style.cursor = "";
@@ -184,17 +180,20 @@ function deHighlight(tile){
     }
 }
 
+//Function that add 1 to the count value and update the value on the screen.
 function increaseCounter() {
     counter++;
     clickCount.innerHTML = counter
     
 }
 
+//Function that save the record once the player finish the game, only if current record is 0 or better than previous. 
 function saveRecord(){
         record = counter;
         recordValue.innerHTML = `${record}`;
 }
 
+//Function that set up the look of the board once start button is pressed.
 function prepareBoard(){
 
     coverLeft.style.width = "0px";
@@ -210,11 +209,14 @@ function prepareBoard(){
     instructions.remove();
 }
 
+// Function prepare the board for a new game.
 function startGame(){
     winScreenShowing = false;
     counter = 0;
-    active = true;
-    clickCount.innerHTML = counter
+    setTimeout(function(){
+        active = true;
+    },1000);
+    clickCount.innerHTML = counter;
     clickCount.style.fontSize = "20px";
     clickCount.style.paddingTop = "5px";
     counterTab.style.height ="50px";
@@ -224,7 +226,7 @@ function startGame(){
         gameBoardArray.forEach(element =>{
             element.style.transition = "";
             element.style.opacity = "";
-            playArea.appendChild(element)})
+            playArea.appendChild(element)});
             document.getElementById("win_screen").remove();
             menu.appendChild(resetButton);
             menu.appendChild(rulesButton);
@@ -234,6 +236,7 @@ function startGame(){
 
 }
 
+//Function that run when player has finished the game.
 function endGame(){
     active = false;
     clickCount.style.fontSize = "0px";
@@ -258,6 +261,7 @@ function endGame(){
     }
 };
 
+//Function that show the endscreen when player has finished the game.
 function showEndScreen(){
     winScreenShowing = true;
     const winScreen= document.createElement("div"); 
@@ -269,6 +273,7 @@ function showEndScreen(){
     
 }
 
+//Function that check if all the squares are in the same color. If true it run the endGame function.
 function CheckStatus(){
     if(square1Class.length === 36 || square2Class.length === 36){
         endGame();
@@ -276,6 +281,7 @@ function CheckStatus(){
 
 }
 
+//Function decide which board setup to be used by randomizing a value from 1 to 9.
 const setupRandomizer = () => {
     let newBoardSetup = Math.floor(Math.random()*10);
     while(newBoardSetup === lastBoardSetup){
@@ -284,11 +290,11 @@ const setupRandomizer = () => {
         return lastBoardSetup = newBoardSetup;
     
 }
-
+// function that turn the tiles according to the array returned in the setupRandomizer.
 function BoardSetup(boardSetupValue){
     for(let i = 0; i < gameBoardArray.length; i++){
         if(gameBoardArray[i].className === "square2"){
-            flipTileBoard(gameBoardArray[i]);
+            flipTile(gameBoardArray[i]);
         }
     }
 
@@ -296,70 +302,70 @@ function BoardSetup(boardSetupValue){
         case 0:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup1.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 1:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup2.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 2:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup3.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 3:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup4.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 4:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup5.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 5:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup6.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 6:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup7.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 7:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup8.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 8:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup9.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
         case 9:
             for(let i = 0; i < gameBoardArray.length ; i++){
                 if(setup10.includes(gameBoardArray[i].id)){
-                    flipTileBoard(gameBoardArray[i]);
+                    flipTile(gameBoardArray[i]);
                 }
             }
         break;
@@ -381,8 +387,7 @@ function BoardSetup(boardSetupValue){
     }    
 }
 
-//Functions for the game squares
-
+//Eventlisterners added for each square on the board.
 gameBoardArray.forEach(element => {
     element.addEventListener("mouseover", () => {
         highlight(element)});
@@ -627,8 +632,7 @@ gameBoardArray.forEach(element => {
     }
 )
 
-//function for the Buttons
-
+//Eventlisteners added for each button on the board.
 buttonArray.forEach(element => {
     
     element.addEventListener("mouseover", () =>{
@@ -669,6 +673,7 @@ buttonArray.forEach(element => {
 }
 )
 
+//Eventlisteners specific for the Startbutton.
 startButton.onclick = function (){
     if(!active){
     prepareBoard();
@@ -687,6 +692,7 @@ startButton.onclick = function (){
     }
 }
 
+//Eventlisteners specific for the rules.Button
 rulesButton.onmouseover = function (){
     rulesButton.style.cursor ="pointer";
     rulesButton.style.textShadow ="1px 1px 6px";
@@ -710,6 +716,8 @@ rulesButton.onmousedown = function (){
             playArea.appendChild(instructions);
             instructions.style.backgroundColor ="lightyellow";
             instructions.style.border = "3px solid darkgoldenrod";
+            instructions.style.top = "20%";
+            //instructions.style.width ="240px"
             instructionsText[0].style.color = "black";
             instructionsSpan[0].style.color = "black";
             newGameButton.style.opacity = "0.3";
@@ -751,6 +759,7 @@ resetButton.onclick = function (){
     }
 }
 
+//Specifies what happens when player click on the New Game button.
 newGameButton.onclick = function (){
         if(playArea.childElementCount !== 37){
         startGame();
@@ -758,6 +767,7 @@ newGameButton.onclick = function (){
     }
 }
 
+//Eventlisteners for the X in the corner of the rules popup.
 exitInstructions.onmouseover = function(){
     exitInstructions.style.color = "orange";
     exitInstructions.style.border = "2px solid orange";
