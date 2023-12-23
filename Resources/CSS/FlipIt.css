@@ -271,8 +271,12 @@ p{
         font-size: 30px;
     }
 
-    .button, #instructions p{
+    #instructions p{
         font-size: 15px;
+    }
+
+    .button {
+        font-size: 10px;
     }
 
     #start_button{
