@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Math Practices</title>
+        <link href="./Resources/CSS/math_practice.css" type="text/css" rel="stylesheet">
+        <script src="./Resources/Javascript/math_practice.js" defer></script>
+    </head>
+    <body>
+        <div id="frame">
+            <h1>Math practice</h1>
+            <div class="option" id="addition">Addition</div>
+            <div class="option" id="subtraction">Subtraction</div>
+            <div class="option" id="multiplication">Multiplication</div>
+            <div class="option" id="division">Division</div>
+            <div class="option" id="multiplication-table">Multiplication Table</div>
+            <div id="math_problem">Choose what you want to practice on from the menu above.</div>
+            <div id="reply"></div>
+            <form id="answer-form" action="/submit-form" method="GET">
+                <input type="text" name="user_answer" id="user_answer" placeholder="Type your answer here">
+                <input type="Submit" class="button" name="submit-button" id="submit-button">
+            </form>
+            <div class="button" id="next-button">Next Problem</div>
+            <div>Score</div>
+            <div id="score">0/0</div>
+        </div>
+    </body>
+</html>

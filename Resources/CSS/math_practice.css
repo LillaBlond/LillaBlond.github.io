@@ -1,0 +1,63 @@
+
+
+#frame{
+    margin: auto;
+    text-align: center;
+}
+
+#math_problem{
+    font-size: 30px;
+    margin: 60px;
+}
+
+span{
+    font-weight: bold;
+}
+
+#reply{
+    height: 40px;
+}
+
+.button{
+    border: 1px solid darkslategray;
+    background-color: gainsboro;
+    margin: 30px auto;
+    width: fit-content;
+   
+}
+
+#next-button{
+    padding: 3px 5px;
+}
+
+.button:hover{
+    background-color: lightgray;
+}
+
+.option, .active-option{
+    border: 1px solid grey;
+    padding: 5px;
+    width: 150px;
+    margin: auto;
+    display: inline-block;
+}
+
+.option{
+    background-color: darkslategray;
+    color: white;
+}
+
+.active-option{
+    color: darkslategray;
+    font-weight: bold;
+    background-color: whitesmoke;
+}
+
+.option:hover{
+    background-color:cadetblue;
+}
+
+.option:active{
+    color: whitesmoke;
+    background-color: rgb(28, 47, 47);
+}
