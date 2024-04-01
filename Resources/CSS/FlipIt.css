@@ -271,6 +271,11 @@ p{
         font-size: 30px;
     }
 
+    h2{
+        font-size: 30px;
+        margin: 50px 10px;
+    }
+
     #instructions p{
         font-size: 10px;
     }
