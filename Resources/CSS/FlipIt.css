@@ -8,7 +8,6 @@ body{
     background-image: url("../Pictures/autumn2.jpg");
     background-size: cover;
     background-position: top;
-    background-position: center;
     background-repeat: no-repeat;
     background-color: black; 
 }
