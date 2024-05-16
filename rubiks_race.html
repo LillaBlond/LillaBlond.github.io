@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rubik's Race</title>
+        <link href="./Resources/CSS/rubiks_race.css" type="text/css" rel="stylesheet">
+        <script src="./Resources/Javascript/rubiks_race.js" type="text/javascript" defer></script>
+    </head>
+    <body>
+        <div id="title">Rubiks Race</div>
+        <div id="play-area">
+            <div id="player-one-section">
+                <div class="score">
+                    <div>Player 1</div>
+                     <div id="player-one-score">0</div>
+                     </div>
+                <div id="player-one-board">
+                    <div id="paused1" class="pause">Paused</div>
+                    <div id="P1-won" class="end-popup">You won!</div>
+                    <div id="P1-lost" class="end-popup">You lost!</div>
+                </div>
+                <div id="player-one-fin-button" class="fin-button">Done!</div>
+            </div>
+            <div id="middle-section">
+                <div id="goal-pattern">
+                </div>
+                <div id="menu">
+                    <div id="controls-info">
+                        <table>
+                            <tr>
+                                <th colspan="2">In Game</th>                                
+                            </tr>
+                            <tr>
+                                <td class="top-padding bottom-padding">Access Menu</td>
+                                <td class="top-padding bottom-padding">Escape</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">Player 1</th>
+                            </tr>
+                            <tr>
+                                <td class="top-padding">Move Up</td>
+                                <td class="top-padding">W</td>
+                            </tr>
+                            <tr>
+                                <td>Move Left</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>Move Down</td>
+                                <td>S</td>
+                            </tr>
+                            <tr>
+                                <td>Move Right</td>
+                                <td>D</td>
+                            </tr>
+                            <tr>
+                                <td class="bottom-padding">Move Tile</td>
+                                <td class="bottom-padding">Q</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">Player 2</th>                               
+                            </tr>
+                            <tr>
+                                <td class="top-padding">Move Up</td>
+                                <td class="top-padding">Up Arrow</td>
+                            </tr>
+                            <tr>
+                                <td>Move Left</td>
+                                <td>Left Arrow</td>
+                            </tr>
+                            <tr>
+                                <td>Move Down</td>
+                                <td>Down Arrow</td>
+                            </tr>
+                            <tr>
+                                <td>Move Right</td>
+                                <td>Right Arrow</td>
+                            </tr>
+                            <tr>
+                                <td>Move Tile</td>
+                                <td>Enter</td>
+                            </tr>
+                            
+                        </table>
+                        <p id="exit-popup">Press Enter to close</p>
+                    </div>
+                    <div id="continue-option" class="menu-options inactive">Continue</div>
+                    <div id="start-option" class="menu-options-hover">New Game</div>
+                    <div id="controls-option" class="menu-options">Controls</div>
+                    <div id="reset-score" class="menu-options">Reset Score</div>
+                    <div id="exit-option" class="menu-options">Exit</div>
+                </div>
+            </div>
+            <div id="player-two-section">
+                <div class="score" >
+                    <div>Player 2</div>
+                     <div id="player-two-score">0</div>
+
+                     </div>
+                <div id="player-two-board">
+                    <div id= "paused2" class="pause">Paused</div>
+                    <div id="P2-won" class="end-popup">You won!</div>
+                    <div id="P2-lost" class="end-popup">You lost!</div>
+                </div>
+                <div id="player-two-fin-button" class="fin-button">Done!</div>
+            </div>
+        </div>
+        
+            
+            
+            
+    </body>
+</html>

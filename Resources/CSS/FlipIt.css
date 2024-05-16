@@ -5,12 +5,12 @@
 }
 
 body{
-    background-image: url("../Pictures/autumn3.png");
+    background-image: url("../Pictures/autumn4.png");
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
-    background-color: black; 
-    height: 100vh;
+    background-color: #180903; 
+    height: 90vh;
 }
 
 h1{
@@ -35,7 +35,7 @@ p{
     height: 250px;
     width: 100%;
     min-width: 600px;
-    background-image: url("../Pictures/leaves.png");
+    background-image: url("../Pictures/leaves2.png");
     background-repeat: repeat;
     background-position: top;
     background-size: 500px;
@@ -107,9 +107,9 @@ p{
 
 #board{
     position: relative;
-    background-image: url("../Pictures/board_background.png");
+    background-image: url("../Pictures/board_background2.png");
     background-position: top;
-    background-size: 1190px 1200px;
+    background-size: 1190px 600px;
     /* background-color: rgba(0, 0, 0, 0.8); */
     height: 600px;
     width: 580px;
@@ -250,6 +250,7 @@ p{
 
     #graph_board{
         min-width: 300px;
+        background-image: url("../Pictures/leaves.png");
     }
 
     .square1, .square2, .square3, .square4 {

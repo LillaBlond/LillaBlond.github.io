@@ -919,7 +919,6 @@ startButton.onclick = function () {
       active = true;
     }, 700);
     graphBoard.style.top = "-120px";
-    graphBoard.style.zIndex = "-10";
     setTimeout(() => {
       document.getElementsByTagName("h1")[0].style.transition = "1s";
       document.getElementsByTagName("h1")[0].style.textShadow =
