@@ -757,7 +757,7 @@ function updateGame() {
       } else if (menuSelection === 0) {
         inGame = true;
         gamePaused = false;
-        menuSelection = 5;
+        menuSelection = 6;
         menuOption0.className = idle;
         paused1.style.display = "none";
         paused2.style.display = "none";
@@ -838,6 +838,7 @@ function updateGame() {
         menuOption2.className = idle;
         menuOption3.className = idle;
         menuOption4.className = idle;
+        menuOption5.className = idle;
         console.log("alternativ6");
         break;
     }
