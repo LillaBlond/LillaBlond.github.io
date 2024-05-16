@@ -616,9 +616,10 @@ const goalBoardSetUp = () => {
 function updateGame() {
   const menuOption0 = document.getElementById("continue-option");
   const menuOption1 = document.getElementById("start-option");
-  const menuOption2 = document.getElementById("controls-option");
-  const menuOption3 = document.getElementById("reset-score");
-  const menuOption4 = document.getElementById("exit-option");
+  const menuOption2 = document.getElementById("rules-option");
+  const menuOption3 = document.getElementById("controls-option");
+  const menuOption4 = document.getElementById("reset-score");
+  const menuOption5 = document.getElementById("exit-option");
   const paused1 = document.getElementById("paused1");
   const paused2 = document.getElementById("paused2");
   const idle = "menu-options";
@@ -707,7 +708,7 @@ function updateGame() {
         }
       }
       if (controls.ArrowDown.active) {
-        if (menuSelection < 4 && !infoOpen) {
+        if (menuSelection < 5 && !infoOpen) {
           menuSelection++;
           console.log(menuSelection);
         }
@@ -720,7 +721,7 @@ function updateGame() {
         }
       }
       if (controls.ArrowDown.active) {
-        if (menuSelection < 4 && !infoOpen) {
+        if (menuSelection < 5 && !infoOpen) {
           menuSelection++;
           console.log(menuSelection);
         }
@@ -732,12 +733,20 @@ function updateGame() {
         goalBoardSetUp();
         inGame = true;
         gamePaused = false;
-        menuSelection = 5;
+        menuSelection = 6;
         paused1.style.display = "none";
         paused2.style.display = "none";
         document.getElementById("continue-option").className =
           "menu-options inactive";
       } else if (menuSelection === 2) {
+        if (infoOpen) {
+          document.getElementById("rules-info").style.display = "none";
+          infoOpen = false;
+        } else {
+          document.getElementById("rules-info").style.display = "block";
+          infoOpen = true;
+        }
+      } else if (menuSelection === 3) {
         if (infoOpen) {
           document.getElementById("controls-info").style.display = "none";
           infoOpen = false;
@@ -752,7 +761,7 @@ function updateGame() {
         menuOption0.className = idle;
         paused1.style.display = "none";
         paused2.style.display = "none";
-      } else if (menuSelection === 3) {
+      } else if (menuSelection === 4) {
         resetScore();
       }
     }
@@ -766,6 +775,7 @@ function updateGame() {
         menuOption2.className = idle;
         menuOption3.className = idle;
         menuOption4.className = idle;
+        menuOption5.className = idle;
         console.log("alternativ1");
         break;
       case 1:
@@ -776,6 +786,7 @@ function updateGame() {
         menuOption2.className = idle;
         menuOption3.className = idle;
         menuOption4.className = idle;
+        menuOption5.className = idle;
         console.log("alternativ1");
         break;
       case 2:
@@ -786,6 +797,7 @@ function updateGame() {
         menuOption2.className = hover;
         menuOption3.className = idle;
         menuOption4.className = idle;
+        menuOption5.className = idle;
         console.log("alternativ2");
         break;
       case 3:
@@ -796,6 +808,7 @@ function updateGame() {
         menuOption2.className = idle;
         menuOption3.className = hover;
         menuOption4.className = idle;
+        menuOption5.className = idle;
         console.log("alternativ3");
         break;
       case 4:
@@ -806,9 +819,18 @@ function updateGame() {
         menuOption2.className = idle;
         menuOption3.className = idle;
         menuOption4.className = hover;
+        menuOption5.className = idle;
         console.log("alternativ4");
         break;
       case 5:
+        menuOption1.className = idle;
+        menuOption2.className = idle;
+        menuOption3.className = idle;
+        menuOption4.className = idle;
+        menuOption5.className = hover;
+        console.log("alternativ5");
+        break;
+      case 6:
         if (gamePaused) {
           menuOption0.className = idle;
         }
@@ -816,7 +838,7 @@ function updateGame() {
         menuOption2.className = idle;
         menuOption3.className = idle;
         menuOption4.className = idle;
-        console.log("alternativ5");
+        console.log("alternativ6");
         break;
     }
   }
